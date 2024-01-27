@@ -60,7 +60,7 @@ int calcBracketMaxLength(std::string str)
 
     // 1. 괄호를 쌍을 맞추는데 확인하기 위한 스택 생성
     std::stack<int> stk;
-    {{c1::stk.push(-1);}} // 괄호쌍이 없는 경우를 위해
+    stk.push(-1); // 괄호쌍이 없는 경우를 위해
    
     for (int i = 0; i < str.length(); i++)
     {
@@ -74,11 +74,11 @@ int calcBracketMaxLength(std::string str)
             if (!stk.empty())
             {
                  // 괄호의 쌍이 성립되는 시작부터 성립의 끝까지의 길이 계산
-                {{c1::ret = max(ret, i - stk.top());}}
+        	 ret = max(ret, i - stk.top());
             }
             else
             {
-                {{c1::stk.push(i);}}
+                stk.push(i);
             }
         }
     }
@@ -106,15 +106,15 @@ int calcCrossLines(vector<pair<int, int>> lines)
         dp[i] = 1;
         for (int j = 0; j < i; j++)
         {
-            if ({{c1::lines[j].second < lines[i].second}})
+            if (lines[j].second < lines[i].second)
             {
-                {{c1::dp[i] = max(dp[i], dp[j] + 1);}}
+                dp[i] = max(dp[i], dp[j] + 1);
             }
            
-            {{c1::res = max(res, dp[i]);}}
+            res = max(res, dp[i]);
         }
     }
    
-    return {{c1::lineSize - res;}}
+    return lineSize - res;
 }
 
